@@ -51,3 +51,12 @@ export const generateGlasgowWeatherData = (): WeatherData => {
   // Return weather data
   return generatedWeatherData;
 };
+
+export const generateThreeDayWeatherData = (): ThreeDayWeatherData => {
+  const generatedWeatherData = {
+    dayOne: faker.number.int({ min: -15, max: 30 }),
+    dayTwo: faker.number.int({ min: -15, max: 30 }),
+    dayThree: faker.number.int({ min: -15, max: 30 }),
+  };
+  return generatedWeatherData;
+};
