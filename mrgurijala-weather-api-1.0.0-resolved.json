@@ -1,0 +1,146 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Weather API",
+    "description": "A simple API to fetch weather information for a specific city",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://virtserver.swaggerhub.com/LDUTA/weather_api/1.0.0",
+      "description": "SwaggerHub API Auto Mocking"
+    },
+    {
+      "url": "http://localhost:3000/api"
+    },
+    {
+      "url": "https://upgraded-space-engine-wg6v7j45jgvfgpg7-3000.app.github.dev/api",
+      "description": "Local server"
+    }
+  ],
+  "paths": {
+    "/weather/{city}": {
+      "get": {
+        "summary": "Get weather data for a city",
+        "description": "Fetches weather data for the specified city.",
+        "parameters": [
+          {
+            "name": "city",
+            "in": "path",
+            "description": "City for which to fetch the weather",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "City not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/weather/threedaytemp/{city}": {
+      "get": {
+        "summary": "Get three day temperatures of the city",
+        "description": "Fethces the three day temperatures",
+        "parameters": [
+          {
+            "name": "city",
+            "in": "path",
+            "description": "City for which to fetch the temperatures",
+            "required": true,
+            "style": "simple",
+            "explode": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_threeday_response_200"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "City not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "inline_response_200": {
+        "type": "object",
+        "properties": {
+          "temperature": {
+            "type": "number",
+            "description": "Current temperature.",
+            "example": 20
+          },
+          "humidity": {
+            "type": "number",
+            "description": "Current humidity.",
+            "example": 79
+          },
+          "wind": {
+            "type": "number",
+            "description": "Current wind.",
+            "example": 24
+          },
+          "rain": {
+            "type": "number",
+            "description": "Current rain.",
+            "example": 65
+          }
+        }
+      },
+      "inline_threeday_response_200": {
+        "type": "object",
+        "properties": {
+          "dayOne": {
+            "type": "number",
+            "description": "Day One temperature of a city.",
+            "example": -10
+          },
+          "dayTwo": {
+            "type": "number",
+            "description": "Day Two temperature of a city.",
+            "example": -15
+          },
+          "dayThree": {
+            "type": "number",
+            "description": "Day Three temperature of a city",
+            "example": 5
+          }
+        }
+      }
+    }
+  }
+}
